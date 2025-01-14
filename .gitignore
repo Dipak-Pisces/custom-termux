@@ -1,0 +1,17 @@
+# Ignore all files in ./naukri-profile-auto-update/data but keep the directory itself
+/naukri-profile-auto-update/data/*
+!/naukri-profile-auto-update/data/.gitkeep
+
+# Ignore all -x.sh files inside ./naukri-profile-auto-update/script-templates
+/naukri-profile-auto-update/script-templates/*-x.sh
+!/naukri-profile-auto-update/script-templates/.gitkeep
+
+# Ignore specific directories inside ./approach-recruiters but keep the directories themselves
+/approach-recruiters/data/*
+!/approach-recruiters/data/.gitkeep
+
+/approach-recruiters/log/*
+!/approach-recruiters/log/.gitkeep
+
+/approach-recruiters/attachments/*
+!/approach-recruiters/attachments/.gitkeep

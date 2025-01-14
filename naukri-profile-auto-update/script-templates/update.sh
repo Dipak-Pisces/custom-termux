@@ -1,0 +1,21 @@
+curl 'https://www.naukri.com/cloudgateway-mynaukri/resman-aggregator-services/v1/users/self/fullprofiles' \
+  -H 'accept: application/json' \
+  -H 'accept-language: en-GB,en;q=0.9' \
+  -H 'appid: 105' \
+  -H 'authorization: Bearer <BEARER_TOKEN>' \
+  -H 'clientid: d3skt0p' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://www.naukri.com' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://www.naukri.com/mnjuser/profile?action=modalOpen' \
+  -H 'sec-ch-ua: "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'systemid: Naukri' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36' \
+  -H 'x-http-method-override: PUT' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  --data-raw '{"profile":{"resumeHeadline":"<PROFILE_HEADING>"},"profileId":"<PROFILE_ID>"}' --cookie-jar ./data/cookies.txt --cookie ./data/cookies.txt

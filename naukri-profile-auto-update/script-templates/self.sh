@@ -1,0 +1,18 @@
+curl 'https://www.naukri.com/cloudgateway-mynaukri/resman-aggregator-services/v2/users/self?expand_level=3&properties=profile' \
+-X 'GET' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer <BEARER_TOKEN>' \
+-H 'Sec-Fetch-Site: same-origin' \
+-H 'Accept-Language: en-IN,en-GB;q=0.9,en;q=0.8' \
+-H 'Cache-Control: max-age=0' \
+-H 'Sec-Fetch-Mode: cors' \
+-H 'Accept-Encoding: gzip, deflate, br' \
+-H 'Host: www.naukri.com' \
+-H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15' \
+-H 'Referer: https://www.naukri.com/mnjuser/homepage' \
+-H 'Connection: keep-alive' \
+-H 'Sec-Fetch-Dest: empty' \
+-H 'appid: 105' \
+-H 'systemid: Naukri' \
+-H 'clientid: d3skt0p, d3skt0p' --output ./data/self.txt

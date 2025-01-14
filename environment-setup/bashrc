@@ -1,0 +1,2 @@
+alias approach="cd ~ && export GIT_GMAIL_APP_PASSWORD='<YOUR_APP_PASSWORD>' && cd custom-termux/approach-recruiters && python approach.py"
+alias approached="cd ~/custom-termux/approach-recruiters && python remove_email.py"
