@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# Function to create Termux boot directory
+mkdir -p ~/.termux/boot
+echo ">> Termux boot directory created."
+
+# Function to copy the start-cron.sh script to the boot directory
+cp ../environment-setup/start-cron.sh ~/.termux/boot/
+chmod +x ~/.termux/boot/start-cron.sh
+echo ">> start-cron.sh copied and made executable."
+
+# Function to create logs folder
+mkdir -p ~/logs
+echo ">> Logs folder created."
+
 if [[ $(pwd) == *"com.termux"* ]]; then
     echo "Termux detected. Installing Brotli..."
     pkg update -y
