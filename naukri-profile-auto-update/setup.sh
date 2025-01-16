@@ -14,10 +14,10 @@ mkdir -p ~/logs
 echo ">> Logs folder created."
 
 if [[ $(pwd) == *"com.termux"* ]]; then
-    echo "Termux detected. Installing Brotli..."
+    echo "Termux detected. Installing Brotli and Cronie..."
     pkg update -y
-    pkg install brotli -y
-    echo "✓ Brotli installed"
+    pkg install brotli cronie -y
+    echo "✓ Brotli and Cronie installed"
 fi
 
 DATA_DIR="./data"
@@ -39,7 +39,7 @@ echo
 # Store credentials
 echo "username=$USERNAME" > "$CREDENTIALS_FILE"
 echo "password=$PASSWORD" >> "$CREDENTIALS_FILE"
-chmod 644 "$CREDENTIALS_FILE"  # Use 644 for read/write by owner, read-only for others
+chmod 644 "$CREDENTIALS_FILE"
 echo "✓ Credentials saved"
 
 # Step 2: Collect profile headline with validation
@@ -68,7 +68,6 @@ chmod +x ./script-templates/welcome-x.sh
 chmod +x ./script-templates/update-x.sh
 chmod +x ./script-templates/login-x.sh
 chmod +x ./script-templates/self-x.sh
-# chmod 644 ./script-templates/*-x.sh
 echo "✓ Template files copied and made executable"
 
 # Step 4: Replace credentials in login-x.sh

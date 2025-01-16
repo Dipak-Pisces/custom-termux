@@ -4,6 +4,7 @@
 
 # Ignore all -x.sh files inside ./naukri-profile-auto-update/script-templates
 /naukri-profile-auto-update/script-templates/*-x.sh
+/naukri-profile-auto-update/scheduled.sh
 !/naukri-profile-auto-update/script-templates/.gitkeep
 
 # Ignore specific directories inside ./approach-recruiters but keep the directories themselves
