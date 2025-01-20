@@ -16,7 +16,8 @@ echo ">> Logs folder created."
 if [[ $(pwd) == *"com.termux"* ]]; then
     echo "Termux detected. Installing Brotli and Cronie..."
     pkg update -y
-    pkg install brotli cronie -y
+    pkg install brotli -y
+    pkg install cronie -y
     echo "✓ Brotli and Cronie installed"
 fi
 
