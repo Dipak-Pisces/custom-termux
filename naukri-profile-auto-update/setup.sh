@@ -18,6 +18,7 @@ if [[ $(pwd) == *"com.termux"* ]]; then
     pkg update -y
     pkg install brotli -y
     pkg install cronie -y
+    mkdir -p ~/.cache/crontab
     echo "✓ Brotli and Cronie installed"
 fi
 
