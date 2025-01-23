@@ -84,8 +84,8 @@ PROFILE_HEADING=$(cat "$HEADLINE_FILE")
 
 if [ -n "$PROFILE_HEADING" ]; then
     ESCAPED_PROFILE_HEADING=$(echo "$PROFILE_HEADING" | sed 's|[&/|]|\\&|g' | sed 's/|/,/g')
-    CURRENT_TIME=$(date '+%Y-%m-%d %H:%M:%S')
-    sed -i "s|<PROFILE_HEADING>|$ESCAPED_PROFILE_HEADING - $CURRENT_TIME|g" ./script-templates/update-x.sh
+    CURRENT_TIME=$(date '+%d/%H:%M')
+    sed -i "s|<PROFILE_HEADING>|$ESCAPED_PROFILE_HEADING {$CURRENT_TIME}|g" ./script-templates/update-x.sh
     echo "✓ Profile headline replaced with timestamp: $CURRENT_TIME"
 else
     echo "✗ Error: Headline file is empty"
@@ -98,4 +98,3 @@ echo "Step 9: Updating profile..."
 echo "✓ Profile updated successfully"
 
 echo -e "\nSchedule complete! All steps executed successfully."
-crond
