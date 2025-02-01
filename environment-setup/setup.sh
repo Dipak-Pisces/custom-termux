@@ -22,7 +22,7 @@ read_email_and_password() {
     echo ">> Email, password, and employment details collected."
 
     # Store data in Metadata.txt
-    metadata_file="../approach-recruiters/data/Metadata.txt"
+    metadata_file="../approach-recruiters/data/metadata.txt"
     echo "sender_email=$sender_email" > $metadata_file
     echo "resigned_status=$resigned_status" >> $metadata_file
     if [ "$resigned_status" == "yes" ]; then
