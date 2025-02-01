@@ -1,12 +1,35 @@
 #!/bin/bash
 
-# Function to read email and app password from user
+# Function to read email, app password, and employment status from user
 read_email_and_password() {
     echo ">> Enter your Gmail email address:"
     read sender_email
     echo ">> Enter your Gmail app password:"
     read -s app_password
-    echo ">> Email and password collected."
+
+    # Collect employment status
+    echo ">> Have you resigned from your current job? (yes/no):"
+    read resigned_status
+
+    if [ "$resigned_status" == "yes" ]; then
+        echo ">> Enter your last working day (YYYY-MM-DD):"
+        read last_working_day
+    else
+        echo ">> Enter the duration of your notice period (in days):"
+        read notice_period
+    fi
+
+    echo ">> Email, password, and employment details collected."
+
+    # Store data in Metadata.txt
+    metadata_file="../approach-recruiters/data/Metadata.txt"
+    echo "sender_email=$sender_email" > $metadata_file
+    echo "resigned_status=$resigned_status" >> $metadata_file
+    if [ "$resigned_status" == "yes" ]; then
+        echo "last_working_day=$last_working_day" >> $metadata_file
+    else
+        echo "notice_period=$notice_period" >> $metadata_file
+    fi
 }
 
 # Function to create a temporary bashrc file, update it, and copy to home directory
@@ -84,8 +107,8 @@ clear_email_and_attachments() {
 main() {
     echo ""
     echo "===== Starting Environment Setup ====="
-    
-    # Step 1: Get email and app password from user
+
+    # Step 1: Get email, app password, and employment details from user
     read_email_and_password
 
     # Step 2: Create a temporary bashrc, update it, and copy to home directory
@@ -97,27 +120,20 @@ main() {
     # Step 4: Create Termux boot directory
     create_termux_boot
 
-    # Step 5: Copy start-cron.sh to boot directory and make it executable
+    # Step 5: Copy start-cron.sh to boot directory and set permissions
     copy_start_cron_script
 
-    # Step 6: Set up cron job for reminder
+    # Step 6: Setup cron job
     setup_cron_job
 
-    # Step 7: Create logs directory
+    # Step 7: Create logs folder
     create_logs_folder
 
-    # Step 8: Clear email body, subject, and attachments
+    # Step 8: Clear previous email data and attachments
     clear_email_and_attachments
 
-    echo ""
-    echo "=========== Environment Setup Completed Successfully ==========="
-    echo ""
-    echo "🚨 Please run the following command manually to apply changes 🚨"
-    echo ""
-    echo "       source ~/.bashrc"
-    echo ""
-    echo "================================================================"
+    echo "===== Environment Setup Completed ====="
 }
 
-# Run the main setup function
+# Run the main function
 main

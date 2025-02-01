@@ -7,6 +7,7 @@ import os
 import sys
 import logging
 import re  # For email validation
+from datetime import datetime
 
 # Configure logging
 logging.basicConfig(
@@ -28,6 +29,7 @@ email_body_path = "data/EmailBody.txt"
 email_subject_path = "data/EmailSubject.txt"
 attachments_folder = "attachments"
 resume_name_file = os.path.join(attachments_folder, "resume_name.txt")
+metadata_file = "data/metadata.txt"
 
 # Email credentials
 sender_email = "pdipak945@gmail.com"
@@ -46,6 +48,17 @@ def read_file_content(file_path):
     except FileNotFoundError:
         logging.error(f"Error: File '{file_path}' not found.")
         return None
+
+# Function to read metadata values
+def read_metadata():
+    metadata = {}
+    if os.path.exists(metadata_file):
+        with open(metadata_file, 'r') as file:
+            for line in file:
+                if line.strip():
+                    key, value = line.strip().split('=')
+                    metadata[key] = value
+    return metadata
 
 # Function to check if recipient email is already in Approached.txt
 def is_email_approached(file_path, email):
@@ -92,6 +105,34 @@ if not is_valid_email(recipient_email):
 # Read the email subject and body
 subject = read_file_content(email_subject_path)
 body = read_file_content(email_body_path)
+
+# Read metadata
+metadata = read_metadata()
+
+# Modify subject based on metadata
+if metadata.get('resigned_status') == 'no':
+    notice_period = metadata.get('notice_period')
+    if notice_period:
+        subject += f" - Official Notice Period: {notice_period} Days"
+elif metadata.get('resigned_status') == 'yes':
+    last_working_day = metadata.get('last_working_day')
+    if last_working_day:
+        try:
+            last_working_date = datetime.strptime(last_working_day, '%Y-%m-%d')
+            today = datetime.today()
+            
+            # Calculate the difference in days, excluding the current day
+            days_to_join = (last_working_date - today).days + 2
+            if days_to_join < 0:
+                logging.error(f"Error: Last working day {last_working_day} is in the past.")
+                print(f"Error: Last working day {last_working_day} is in the past.")
+                sys.exit(1)
+
+            subject += f" - Available to Join in {days_to_join} Days"
+        except ValueError:
+            logging.error(f"Invalid last working day format in metadata: {last_working_day}")
+            print("Error: Invalid last working day format in metadata.")
+            sys.exit(1)
 
 # Check if subject or body is blank
 if not subject:
