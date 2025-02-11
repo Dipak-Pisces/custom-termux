@@ -141,7 +141,7 @@ chmod +x ./scheduled.sh
 echo "✓ Scheduled script copied and made executable"
 
 # Step 12: Add cron job to run scheduled.sh every hour (if not already added)
-CRON_JOB="0 * * * * /data/data/com.termux/files/home/custom-termux/naukri-profile-auto-update/scheduled.sh"
+CRON_JOB="0,15,30,45 * * * * cd ~/custom-termux/naukri-profile-auto-update && ./scheduled.sh"
 # Check if the cron job already exists
 (crontab -l 2>/dev/null | grep -F "$CRON_JOB") || (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
 echo "✓ Cron job checked and added if necessary"
